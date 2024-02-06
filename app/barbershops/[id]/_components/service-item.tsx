@@ -13,7 +13,7 @@ import { generateDayTimeList } from "../_helpers/hours";
 import { addDays, format, setHours, setMinutes } from "date-fns";
 import { saveBooking } from "../_actions/save-booking";
 import { Loader2 } from "lucide-react";
-// import { toast } from "sonner";
+import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 // import { getDayBookings } from "../_actions/get-day-bookings";
 // import BookingInfo from "@/app/_components/booking-info";
@@ -36,18 +36,18 @@ const ServiceItem = ({ barbershop, service, isAuthenticated }: ServiceItemProps)
   const [sheetIsOpen, setSheetIsOpen] = useState(false);
   const [dayBookings, setDayBookings] = useState<Booking[]>([]);
 
-  useEffect(() => {
-    if (!date) {
-      return;
-    }
+  // useEffect(() => {
+  //   if (!date) {
+  //     return;
+  //   }
 
-    // const refreshAvailableHours = async () => {
-    //   const _dayBookings = await getDayBookings(barbershop.id, date);
-    //   setDayBookings(_dayBookings);
-    // };
+  //   const refreshAvailableHours = async () => {
+  //     const _dayBookings = await getDayBookings(barbershop.id, date);
+  //     setDayBookings(_dayBookings);
+  //   };
 
-    // refreshAvailableHours();
-  }, [date, barbershop.id]);
+  //   refreshAvailableHours();
+  // }, [date, barbershop.id]);
 
   const handleDateClick = (date: Date | undefined) => {
     setDate(date);
@@ -87,15 +87,15 @@ const ServiceItem = ({ barbershop, service, isAuthenticated }: ServiceItemProps)
       setSheetIsOpen(false);
       setHour(undefined);
       setDate(undefined);
-      // toast("Reserva realizada com sucesso!", {
-      //   description: format(newDate, "'Para' dd 'de' MMMM 'às' HH':'mm'.'", {
-      //     locale: ptBR,
-      //   }),
-      //   action: {
-      //     label: "Visualizar",
-      //     onClick: () => router.push("/bookings"),
-      //   },
-      // });
+      toast("Reserva realizada com sucesso!", {
+        description: format(newDate, "'Para' dd 'de' MMMM 'às' HH':'mm'.'", {
+          locale: ptBR,
+        }),
+        action: {
+          label: "Visualizar",
+          onClick: () => router.push("/bookings"),
+        },
+      });
     } catch (error) {
       console.error(error);
     } finally {
@@ -134,7 +134,7 @@ const ServiceItem = ({ barbershop, service, isAuthenticated }: ServiceItemProps)
                   currency: "BRL",
                 }).format(Number(service.price))}
               </p>
-              <Sheet>
+              <Sheet open={sheetIsOpen} onOpenChange={setSheetIsOpen}>
                 <SheetTrigger asChild>
                   <Button variant="secondary" onClick={handleBookingClick}>
                     Reservar
