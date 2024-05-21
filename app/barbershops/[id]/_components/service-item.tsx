@@ -160,7 +160,7 @@ const ServiceItem = ({ barbershop, service, isAuthenticated }: ServiceItemProps)
                   </Button>
                 </SheetTrigger>
 
-                <SheetContent className="p-0">
+                <SheetContent className="p-0 overflow-x-auto [&::-webkit-scrollbar]:hidden">
                   <SheetHeader className="text-left px-5 py-6 border-b border-solid border-secondary">
                     <SheetTitle>Fazer reserva</SheetTitle>
                   </SheetHeader>
