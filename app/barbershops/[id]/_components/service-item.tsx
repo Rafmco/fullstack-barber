@@ -170,7 +170,7 @@ const ServiceItem = ({ barbershop, service, isAuthenticated }: ServiceItemProps)
                       selected={date}
                       onSelect={handleDateClick}
                       locale={ptBR}
-                      fromDate={new Date()}
+                      fromDate={addDays(new Date(), 1)}
                       styles={{
                         head_cell: {
                           width: "100%",
