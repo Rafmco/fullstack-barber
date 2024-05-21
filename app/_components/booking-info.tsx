@@ -39,7 +39,13 @@ const BookingInfo = ({ booking }: BookingInfoProps) => {
 
             <div className="flex justify-between">
               <h3 className="text-gray-400 text-sm">Horário</h3>
-              <h4 className="text-sm">{format(booking.date, "hh:mm")}</h4>
+              <time
+                  className="text-sm"
+                  title={format(booking.date, "dd 'de' MMMM 'ás' hh:mm", { locale: ptBR})}
+                  dateTime={booking.date.toISOString()}
+                >
+                  {format(booking.date, "hh:mm")}
+                </time>
             </div>
           </>
         )}
